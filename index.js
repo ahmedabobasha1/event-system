@@ -1,22 +1,22 @@
 const express = require("express");
-const app =express();
+const server =express();
 const PORT = 5555;
 const mongoose = require("mongoose");
 
-const speakerRoute = require('./routes/speaker');
-const studentRoute = require('./routes/student');
-const eventRoute = require('./routes/event');
+const speakerRouter = require('./routes/speaker');
+const studentRouter = require('./routes/student');
+const eventRouter = require('./routes/event');
 
 
-app.use(express.json());
+server.use(express.json());
 
 
-app.use('/student',studentRoute);     
-app.use('/speaker',speakerRoute);
-app.use('/event',eventRoute);
+server.use('/student',studentRouter);     
+server.use('/speaker',speakerRouter);
+server.use('/event',eventRouter);
 
 // connection db 
-const connection = mongoose.connect("mongodb://127.0.1:27017/EventSystem",{useNewUrlParser:true,useUnifiedTopology:true},(err)=>{
+mongoose.connect("mongodb://127.0.1:27017/EventSystem",{useNewUrlParser:true,useUnifiedTopology:true},(err)=>{
     if(!err) return console.log("DB Connected");
 }); 
 
@@ -24,9 +24,7 @@ const connection = mongoose.connect("mongodb://127.0.1:27017/EventSystem",{useNe
 
 
 
-app.listen(PORT,(err)=>{
+server.listen(PORT,(err)=>{
     if(!err) return (console.log(`server start at port ${PORT}`))
     console.log(err);
 })
-
-module.exports = connection;

@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+
+
 const  validator = require('validator');
 //const passwordValidator = require('password-validator');
 const speakerSchema = new mongoose.Schema({
@@ -31,6 +33,9 @@ const speakerSchema = new mongoose.Schema({
     }
 
 });
+
+
+
 
 const SpeakerModel = mongoose.model("speaker",speakerSchema)
 

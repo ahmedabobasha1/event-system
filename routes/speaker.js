@@ -4,15 +4,11 @@ const router = express.Router();
 const SpeakerModel = require("../model/speaker")
 
 router.get('/',(req,res)=>{
-    // SpeakerModel.find((err,Speaker)=>{
-    //     if(!err){return res.status(200).json(Speaker)
-    //     }else{
-    //         return res.status(500).json({Error:err})
-    //     }
-    // })
-    SpeakerModel.find().then((result)=>{
+   
+    SpeakerModel.find({}).then((result)=>{
         return res.status(200).json(result)
     }).catch((err)=>{
+        console.log(err);
         return res.status(500).json({Error:err})
     })
 });

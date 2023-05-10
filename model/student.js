@@ -2,18 +2,13 @@ const mongoose = require("mongoose");
 
 const  validator = require('validator');
 
-const autoIncrement = require('mongoose-auto-increment');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
-const connection = require("../index");
-
-
-autoIncrement.initialize(connection);
 
 const studentschema = new mongoose.Schema({
-    // _id:{
-    //     type:Number,
-    //     unique:true
-    // },
+    _id:{
+        type:Number,
+    },
     firstName:{
         type:String ,
         required:true,
@@ -35,11 +30,12 @@ const studentschema = new mongoose.Schema({
             if(!validator.isEmail(value)){
                 throw new Error('Email is invalid');
             }
-       } },
-});
+       } 
+    }
+}, { _id: false });
 
 
-studentschema.plugin(autoIncrement.plugin, 'student');
+    studentschema.plugin(AutoIncrement);
 
 const studentModel = mongoose.model("student",studentschema);
 
