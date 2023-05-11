@@ -23,7 +23,6 @@ mongoose.connect("mongodb://127.0.1:27017/EventSystem",{useNewUrlParser:true,use
 
 
 
-
 server.listen(PORT,(err)=>{
     if(!err) return (console.log(`server start at port ${PORT}`))
     console.log(err);
